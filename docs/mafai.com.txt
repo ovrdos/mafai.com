@@ -1,0 +1,79 @@
+MAFai.com
+
+Map Available Freight Routes
+Manage AI Freight Routes
+----------------------------
+
+gpsa: Begin point for FRM
+gpsb: End point for FRM
+gpsc: Furthest point for FRM
+
+rest: Total Rest time
+time: Total Trip time
+
+trip_profit: Total trip profit
+total_profit: Total potential profit
+
+---
+
+gpsa: required
+gpsb: required
+gpsc: required_when_gpsa_=_gpsb
+
+rest: required_<_trip_time
+time: required_>_rest_time
+
+trip_profit: total_chosen_trips_profit
+total_profit: total_trips_profit
+
+---
+
+gpsa: float
+gpsb: float
+gpsc: float
+
+rest: int
+time: int
+
+trip_profit: float
+total_profit: float
+
+---
+
+[ MAFai.com ]
+
+[ Intro Message ] 
+[ Detail Message ] 
+
+[ Route Info ]
+  [ GPS A: ] [
+  [ GPS B: ] [ 
+  [ GPS C: ] [ 
+
+[ Trip Info ]
+  [ Trip Start Date/Time: ]
+  [ Trip End Date/Time: ]
+
+  [ Total Rest Time: ] 
+  [ Total Trip Time: ] 
+
+  [ Trip Profit: ] 
+  [ Total Profit: ] 
+
+
+---
+
+$90,000,000,000 
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAFai.com - Map Available Freight Routes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <style type="text/css">
+        body.bg-gray-100 {
+            background-color: #c4c4c4;
+        }
+        p {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="max-w-md mx-auto bg-gray-100 rounded-lg shadow p-4">
+        <h1 class="text-xl font-bold text-center mb-1"> MAFai.com </h1>
+        <h2 class="text-xxl font-bold text-center mb-4">Map Available Freight Routes</h2>
+
+        <div class="mb-4 p-2 bg-blue-100 rounded">
+            Plan your trip routes with ease, optimize rest stops, and maximize your profits. Our intuitive interface helps you set route points effortlessly.</p>
+        </div>
+        
+        <div class="mb-4 p-2 bg-green-100 rounded">
+            <p>Enter your route details below to calculate trip times, rest periods, and potential profits.  Ensure compliance with required trip parameters and get the most out of your routes.</p>
+        </div>
+        
+        <label class="block mb-2">Begin Point for FRM (gpsa) *</label>
+        <input type="text" id="gpsa" class="w-full p-2 border rounded" required onclick="openMapPicker('gpsa')">
+        
+        <label class="block mt-4 mb-2">End Point for FRM (gpsb) *</label>
+        <input type="text" id="gpsb" class="w-full p-2 border rounded" required onclick="openMapPicker('gpsb')">
+        
+        <label class="block mt-4 mb-2">Furthest Point for FRM (gpsc)</label>
+        <input type="text" id="gpsc" class="w-full p-2 border rounded">
+        
+        <label class="block mt-4 mb-2">Total Rest Time (rest) *</label>
+        <input type="number" id="rest" class="w-full p-2 border rounded" required onclick="openMapPicker('gpsc')">
+        
+        <label class="block mt-4 mb-2">Total Trip Time (time) *</label>
+        <input type="number" id="time" class="w-full p-2 border rounded" required>
+        
+        <label class="block mt-4 mb-2">Total Trip Profit (trip_profit)</label>
+        <input type="number" id="trip_profit" class="w-full p-2 border rounded">
+        
+        <label class="block mt-4 mb-2">Total Potential Profit (total_profit)</label>
+        <input type="number" id="total_profit" class="w-full p-2 border rounded">
+        
+        <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded">Submit</button>
+    </div>
+    
+    <div id="map" class="h-64 mt-4"></div>
+    
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8
+            });
+        }
+
+        function openMapPicker(inputId) {
+            console.log('map picker ')
+            var input = document.getElementById(inputId);
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+                if (!place.geometry) return;
+                input.value = place.formatted_address;
+            });
+        }
+    </script>
+    <script async defer onload="initMap()"></script>
+</body>
+</html>
